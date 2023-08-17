@@ -26,7 +26,7 @@ class AssessmentResultSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = AssessmentResult
-        fields = ["id", "score", "submission_date", "assessment", "candidate"]
+        fields = ["id", "score", "submission_date", "assessment", "candidate", "result"]
 
     def to_internal_value(self, data):
         # Extract candidate email and assessment ID from the incoming data
@@ -49,4 +49,5 @@ class AssessmentResultSerializer(serializers.ModelSerializer):
             "candidate": candidate,
             "assessment": assessment,
             "score": data.get("score"),
+            "result": data.get("result")
         }
