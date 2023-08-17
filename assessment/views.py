@@ -9,6 +9,9 @@ from question.models import Question
 from .serializers import AssessmentSerializer, AssessmentResultSerializer
 from .permissions import IsAdminOrReadOnly, IsAdminOrCandidate
 
+from .code_executor import execute_testcases
+from .evaluate_assessment import evaluate_assessment, assessment_response
+
 
 class AssessmentViewSet(viewsets.ModelViewSet):
     queryset = Assessment.objects.all()
@@ -26,36 +29,20 @@ class AssessmentResultViewSet(viewsets.ModelViewSet):
 @permission_classes([IsAuthenticated])
 def submit_assessment(request):
     assessment_id = request.data.get("assessment_id")
+
     answers = request.data.get("answers")
-
     assessment = Assessment.objects.get(pk=assessment_id)
-    total_score = 0
 
-    for answer_data in answers:
-        question_id = answer_data["question_id"]
-        question_type = answer_data["question_type"]
+    percentage_score, assessment_results = evaluate_assessment(assessment, answers)
 
-        question = Question.objects.get(pk=question_id)
-
-        if question_type == "MCQ":
-            selected_choice_id = answer_data["selected_choice_id"]
-            correct_choice = question.choices.get(is_correct=True)
-
-            if selected_choice_id == correct_choice.id:
-                total_score += 1  # Increment score for correct MCQ answer
-
-        elif question_type == "COD":
-            pass
-
-    # calculate the percentage score
-    total_questions = assessment.questions.count()
-    percentage_score = (total_score / total_questions) * 100
-
+    # Return a response with additional data
+    response_data = assessment_response(percentage_score, assessment, assessment_results)
+    
     # AssessmentResult instance with the calculated total_score
-    AssessmentResult.objects.create(
-        candidate=request.user,
-        assessment=assessment,
-        score=float(f"{percentage_score:.2f}"),
-    )
+    # AssessmentResult.objects.create(
+    #     candidate=request.user,
+    #     assessment=assessment,
+    #     score=float(f"{percentage_score:.2f}"),
+    # )
 
-    return Response(status=status.HTTP_201_CREATED)
+    return Response(response_data, status=status.HTTP_201_CREATED)

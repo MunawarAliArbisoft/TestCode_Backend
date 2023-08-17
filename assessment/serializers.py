@@ -36,20 +36,17 @@ class AssessmentResultSerializer(serializers.ModelSerializer):
         # Retrieve the Candidate object from the database using the provided email
         try:
             candidate = get_object_or_404(Candidate, email=candidate_email)
-        except Candidate.DoesNotExist:
-            raise serializers.ValidationError("Candidate does not exist.")
+        except Candidate.DoesNotExist as e:
+            raise serializers.ValidationError("Candidate does not exist.") from e
 
         # Retrieve the Assessment object from the database using the provided ID
         try:
             assessment = get_object_or_404(Assessment, id=assessment_id)
-        except Assessment.DoesNotExist:
-            raise serializers.ValidationError("Assessment does not exist.")
+        except Assessment.DoesNotExist as exc:
+            raise serializers.ValidationError("Assessment does not exist.") from exc
 
-        # Create a dictionary containing candidate, assessment, and score
-        assessment_result = {
+        return {
             "candidate": candidate,
             "assessment": assessment,
             "score": data.get("score"),
         }
-
-        return assessment_result
