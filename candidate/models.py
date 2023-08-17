@@ -4,12 +4,13 @@ from django.utils.translation import gettext_lazy as _
 
 from .manager import CandidateManager
 
+
 class Candidate(AbstractUser):
     username = None
-    email = models.EmailField(_('email address'), unique=True)
+    email = models.EmailField(_("email address"), unique=True)
     password = models.CharField(max_length=128)
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
     objects = CandidateManager()

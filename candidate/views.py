@@ -4,6 +4,7 @@ from .models import Candidate
 from .serializers import CandidateSerializer
 from .permissions import CandidatePermission
 
+
 class CandidateViewSet(viewsets.ModelViewSet):
     queryset = Candidate.objects.all()
     serializer_class = CandidateSerializer
