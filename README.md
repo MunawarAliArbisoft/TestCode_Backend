@@ -27,25 +27,25 @@ The detailed information on API endpoints are given below:
 - Assessments Result
 - Login
 
-## Candidate
+### Candidate
 
 The Candidate section provides endpoints related to candidate management.
 
-### List Candidates:
+#### List Candidates:
 
 - **Get a list of all candidates** 
 
   - URL: `http://127.0.0.1:8000/api/candidate/candidates`
   - Method: GET
 
-### Retrieve Candidate:
+#### Retrieve Candidate:
 
 - **Get details of a candidate by ID**
 
   - URL: `http://127.0.0.1:8000/api/candidate/candidates/{id}`
   - Method: GET
 
-### Create Candidate:
+#### Create Candidate:
 
 - **Register a new candidate**
 
@@ -62,7 +62,7 @@ The Candidate section provides endpoints related to candidate management.
     }
     ```
 
-### Update Candidate:
+#### Update Candidate:
 
 - **Update candidate data by providing ID**
 
@@ -79,7 +79,7 @@ The Candidate section provides endpoints related to candidate management.
     }
     ```
 
-### Partial Update Candidate:
+#### Partial Update Candidate:
 
 - **Update some parts of candidate data by providing ID**
 
@@ -93,14 +93,14 @@ The Candidate section provides endpoints related to candidate management.
     }
     ```
 
-### Delete Candidate:
+#### Delete Candidate:
 
 - **Delete a candidate by providing ID**
 
   - URL: `http://127.0.0.1:8000/api/candidate/candidates/{id}`
   - Method: DELETE
 
-### Permissions
+#### Permissions
 
 - **List Candidates:** Only staff users are allowed.
 - **Create Candidate:** Any user can create.
@@ -109,23 +109,23 @@ The Candidate section provides endpoints related to candidate management.
 - **Partial Update Candidate:** Owners and staff members can update partially.
 - **Delete Candidate:** Only staff users are allowed.
 
-## Questions
+### Questions
 
-### List Questions:
+#### List Questions:
 
 - **Get a list of all questions**
 
   - URL: `http://127.0.0.1:8000/api/question/questions`
   - Method: GET
 
-### Retrieve Question:
+#### Retrieve Question:
 
 - **Get details of a question by ID**
 
   - URL: `http://127.0.0.1:8000/api/question/questions/{id}`
   - Method: GET
 
-### Create Question:
+#### Create Question:
 
 - **Create a new question**
 
@@ -155,7 +155,7 @@ The Candidate section provides endpoints related to candidate management.
     }
     ```
 
-### Update Question:
+#### Update Question:
 
 - **Update question data by providing ID**
 
@@ -185,7 +185,7 @@ The Candidate section provides endpoints related to candidate management.
     }
     ```
 
-### Partial Update Question:
+#### Partial Update Question:
 
 - **Update some parts of question data by providing ID**
 
@@ -198,14 +198,14 @@ The Candidate section provides endpoints related to candidate management.
     }
     ```
 
-### Delete Question:
+#### Delete Question:
 
 - **Delete a question by providing ID**
 
   - URL: `http://127.0.0.1:8000/api/question/questions/{id}`
   - Method: DELETE
 
-### Permissions
+#### Permissions
 
 - **List Questions:** Authenticated user can access.
 - **Retrieve Question:** Authenticated user can access.
@@ -214,23 +214,23 @@ The Candidate section provides endpoints related to candidate management.
 - **Partial Update Question:** Staff users are allowed.
 - **Delete Question:** Staff users are allowed.
 
-## Assessment
+### Assessment
 
-### List Assessments:
+#### List Assessments:
 
 - **Get a list of all assessments**
 
   - URL: `http://127.0.0.1:8000/api/assessment/assessments`
   - Method: GET
 
-### Retrieve Assessment:
+#### Retrieve Assessment:
 
 - **Get details of an assessment by ID**
 
   - URL: `http://127.0.0.1:8000/api/assessment/assessments/{id}`
   - Method: GET
 
-### Create Assessment:
+#### Create Assessment:
 
 - **Create a new assessment**
 
@@ -255,7 +255,7 @@ The Candidate section provides endpoints related to candidate management.
     }
     ```
 
-### Update Assessment:
+#### Update Assessment:
 
 - **Update assessment data by providing ID**
 
@@ -280,7 +280,7 @@ The Candidate section provides endpoints related to candidate management.
     }
     ```
 
-### Partial Update Assessment:
+#### Partial Update Assessment:
 
 - **Update some parts of assessment data by providing ID**
 
@@ -293,14 +293,14 @@ The Candidate section provides endpoints related to candidate management.
     }
     ```
 
-### Delete Assessment:
+#### Delete Assessment:
 
 - **Delete an assessment by providing ID**
 
   - URL: `http://127.0.0.1:8000/api/assessment/assessments/{id}`
   - Method: DELETE
 
-### Permissions
+#### Permissions
 
 - **List Assessments:** Authenticated user can access.
 - **Retrieve Assessment:** Authenticated user can access.
@@ -309,23 +309,23 @@ The Candidate section provides endpoints related to candidate management.
 - **Partial Update Assessment:** Staff users are allowed.
 - **Delete Assessment:** Staff users are allowed.
 
-## Assessments Result
+### Assessments Result
 
-### List Assessment Results:
+#### List Assessment Results:
 
 - **Get a list of all assessment results**
 
   - URL: `http://127.0.0.1:8000/api/assessment/assessments-result`
   - Method: GET
 
-### Retrieve Assessment Result:
+#### Retrieve Assessment Result:
 
 - **Get details of an assessment-result by ID**
 
   - URL: `http://127.0.0.1:8000/api/assessment/assessments-result/{id}`
   - Method: GET
 
-### Create Assessment Result:
+#### Create Assessment Result:
 
 - **Create a new assessment result**
 
@@ -382,7 +382,7 @@ The Candidate section provides endpoints related to candidate management.
     }
     ```
 
-### Update Assessments Result:
+#### Update Assessments Result:
 
 - **Update assessment data by providing ID**
 
@@ -424,7 +424,7 @@ The Candidate section provides endpoints related to candidate management.
     }
     ```
 
-### Partial Update Assessment Result:
+#### Partial Update Assessment Result:
 
 - **Update some parts of assessment data by providing ID**
 
@@ -437,14 +437,14 @@ The Candidate section provides endpoints related to candidate management.
     }
     ```
 
-### Delete Assessment Result:
+#### Delete Assessment Result:
 
 - **Delete an assessment by providing ID**
 
   - URL: `http://127.0.0.1:8000/api/assessment/assessments-result/{id}`
   - Method: DELETE
 
-### Permissions
+#### Permissions
 
 - **List Assessments Result:** Staff users are allowed.
 - **Retrieve Assessment Result:** Staff and Owner are allowed
@@ -453,14 +453,14 @@ The Candidate section provides endpoints related to candidate management.
 - **Partial Update Assessment Result:** Staff users are allowed.
 - **Delete Assessment Result:** Staff users are allowed.
 
-## Login
+### Login
 
 Authenticate a user by providing their email and password. This endpoint generates JWT tokens for authentication.
 
 - **URL:** `http://127.0.0.1:8000/api/login/`
 - **Method:** POST
 
-### Request
+#### Request
   - **Body:**
     ```json
     {
@@ -468,7 +468,7 @@ Authenticate a user by providing their email and password. This endpoint generat
         "password": "123"
     }
     ```
-### Response
+#### Response
   - **Status Code: 200 OK**
   - **Description: Returns JWT tokens for access and refresh**
   - **data:**
