@@ -39,10 +39,11 @@ def submit_assessment(request):
     response_data = assessment_response(percentage_score, assessment, assessment_results)
     
     # AssessmentResult instance with the calculated total_score
-    # AssessmentResult.objects.create(
-    #     candidate=request.user,
-    #     assessment=assessment,
-    #     score=float(f"{percentage_score:.2f}"),
-    # )
+    AssessmentResult.objects.create(
+        candidate=request.user,
+        assessment=assessment,
+        score=float(f"{percentage_score:.2f}"),
+        result = assessment_results,
+    )
 
     return Response(response_data, status=status.HTTP_201_CREATED)

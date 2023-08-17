@@ -22,6 +22,7 @@ class AssessmentResult(models.Model):
     candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE)
     assessment = models.ForeignKey(Assessment, on_delete=models.CASCADE)
     score = models.FloatField()
+    result = models.JSONField(null=True)
     submission_date = models.DateField(auto_now_add=True)
 
     class Meta:
