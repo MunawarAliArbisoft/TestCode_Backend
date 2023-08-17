@@ -1,22 +1,6 @@
 import ast
 
 
-def strip_arguments(arguments):
-    """
-    Strip whitespace from each argument in the list.
-
-    Args:
-    ----
-        arguments (list): List of arguments to be stripped.
-
-    Returns:
-    -------
-        list: List of arguments with whitespace stripped.
-    """
-
-    return [arg.strip() for arg in arguments]
-
-
 def generate_function_call(user_code, testcases_input):
     """
     Generate a function caller code based on user code and test case input.
@@ -36,9 +20,7 @@ def generate_function_call(user_code, testcases_input):
         return False
     function_name = parsed_code.body[0].name
     user_args = parsed_code.body[0].args.args
-    testcases_args = strip_arguments(testcases_input.split(","))
-    
-
+    testcases_args = [arg.strip() for arg in testcases_input.split(",")]
 
     if len(user_args) != len(testcases_args):
         return False
