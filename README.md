@@ -21,25 +21,33 @@ The TestCode is an online assessment Center backend project aims to create a rob
 ## Documentation
 
 The detailed information on API endpoints are given below:
-- [Candidate](#candidate)
-- [Questions](#questions)
-- [Assessment](#assessment)
-- [Assessments Result](#assessments-result)
-- [Login](#login)
+- Candidate
+- Questions
+- Assessment
+- Assessments Result
+- Login
 
 ## Candidate
 
-- **List Candidates:** Get a list of all candidates.
+The Candidate section provides endpoints related to candidate management.
+
+### List Candidates:
+
+- **Get a list of all candidates** 
 
   - URL: `http://127.0.0.1:8000/api/candidate/candidates`
   - Method: GET
 
-- **Retrieve Candidate:** Get details of a candidate by ID.
+### Retrieve Candidate:
+
+- **Get details of a candidate by ID**
 
   - URL: `http://127.0.0.1:8000/api/candidate/candidates/{id}`
   - Method: GET
 
-- **Create Candidate:** Register a new candidate.
+### Create Candidate:
+
+- **Register a new candidate**
 
   - URL: `http://127.0.0.1:8000/api/candidate/candidates`
   - Method: POST
@@ -54,7 +62,9 @@ The detailed information on API endpoints are given below:
     }
     ```
 
-- **Update Candidate:** Update candidate data by providing ID.
+### Update Candidate:
+
+- **Update candidate data by providing ID**
 
   - URL: `http://127.0.0.1:8000/api/candidate/candidates/{id}`
   - Method: PUT
@@ -69,7 +79,9 @@ The detailed information on API endpoints are given below:
     }
     ```
 
-- **Partial Update Candidate:** Update some parts of candidate data by providing ID.
+### Partial Update Candidate:
+
+- **Update some parts of candidate data by providing ID**
 
   - URL: `http://127.0.0.1:8000/api/candidate/candidates/{id}`
   - Method: PATCH
@@ -81,7 +93,9 @@ The detailed information on API endpoints are given below:
     }
     ```
 
-- **Delete Candidate:** Delete a candidate by providing ID.
+### Delete Candidate:
+
+- **Delete a candidate by providing ID**
 
   - URL: `http://127.0.0.1:8000/api/candidate/candidates/{id}`
   - Method: DELETE
@@ -97,17 +111,23 @@ The detailed information on API endpoints are given below:
 
 ## Questions
 
-- **List Questions:** Get a list of all questions.
+## List Questions:
+
+- **Get a list of all questions**
 
   - URL: `http://127.0.0.1:8000/api/question/questions`
   - Method: GET
 
-- **Retrieve Question:** Get details of a question by ID.
+### Retrieve Question:
+
+- **Get details of a question by ID**
 
   - URL: `http://127.0.0.1:8000/api/question/questions/{id}`
   - Method: GET
 
-- **Create Question:** Create a new question.
+### Create Question:
+
+- **Create a new question**
 
   - URL: `http://127.0.0.1:8000/api/question/questions`
   - Method: POST
@@ -135,7 +155,9 @@ The detailed information on API endpoints are given below:
     }
     ```
 
-- **Update Question:** Update question data by providing ID.
+### Update Question:
+
+- **Update question data by providing ID**
 
   - URL: `http://127.0.0.1:8000/api/question/questions/{id}`
   - Method: PUT
@@ -163,7 +185,9 @@ The detailed information on API endpoints are given below:
     }
     ```
 
-- **Partial Update Question:** Update some parts of question data by providing ID.
+### Partial Update Question:
+
+- **Update some parts of question data by providing ID**
 
   - URL: `http://127.0.0.1:8000/api/question/questions/{id}`
   - Method: PATCH
@@ -174,7 +198,9 @@ The detailed information on API endpoints are given below:
     }
     ```
 
-- **Delete Question:** Delete a question by providing ID.
+### Delete Question:
+
+- **Delete a question by providing ID**
 
   - URL: `http://127.0.0.1:8000/api/question/questions/{id}`
   - Method: DELETE
@@ -190,17 +216,23 @@ The detailed information on API endpoints are given below:
 
 ## Assessment
 
-- **List Assessments:** Get a list of all assessments.
+### List Assessments:
+
+- **Get a list of all assessments**
 
   - URL: `http://127.0.0.1:8000/api/assessment/assessments`
   - Method: GET
 
-- **Retrieve Assessment:** Get details of an assessment by ID.
+### Retrieve Assessment:
+
+- **Get details of an assessment by ID**
 
   - URL: `http://127.0.0.1:8000/api/assessment/assessments/{id}`
   - Method: GET
 
-- **Create Assessment:** Create a new assessment.
+### Create Assessment:
+
+- **Create a new assessment**
 
   - URL: `http://127.0.0.1:8000/api/assessment/assessments`
   - Method: POST
@@ -223,7 +255,9 @@ The detailed information on API endpoints are given below:
     }
     ```
 
-- **Update Assessment:** Update assessment data by providing ID.
+### Update Assessment:
+
+- **Update assessment data by providing ID**
 
   - URL: `http://127.0.0.1:8000/api/assessment/assessments/{id}`
   - Method: PUT
@@ -246,7 +280,9 @@ The detailed information on API endpoints are given below:
     }
     ```
 
-- **Partial Update Assessment:** Update some parts of assessment data by providing ID.
+### Partial Update Assessment:
+
+- **Update some parts of assessment data by providing ID**
 
   - URL: `http://127.0.0.1:8000/api/assessment/assessments/{id}`
   - Method: PATCH
@@ -257,7 +293,9 @@ The detailed information on API endpoints are given below:
     }
     ```
 
-- **Delete Assessment:** Delete an assessment by providing ID.
+### Delete Assessment:
+
+- **Delete an assessment by providing ID**
 
   - URL: `http://127.0.0.1:8000/api/assessment/assessments/{id}`
   - Method: DELETE
@@ -273,17 +311,23 @@ The detailed information on API endpoints are given below:
 
 ## Assessments Result
 
-- **List Assessment Results:** Get a list of all assessment results.
+### List Assessment Results:
+
+- **Get a list of all assessment results**
 
   - URL: `http://127.0.0.1:8000/api/assessment/assessments-result`
   - Method: GET
 
-- **Retrieve Assessment Result:** Get details of an assessment-result by ID.
+### Retrieve Assessment Result:
+
+- **Get details of an assessment-result by ID**
 
   - URL: `http://127.0.0.1:8000/api/assessment/assessments-result/{id}`
   - Method: GET
 
-- **Create Assessment Result:** Create a new assessment result.
+### Create Assessment Result:
+
+- **Create a new assessment result**
 
   - URL: `http://127.0.0.1:8000/api/assessment/assessments-result`
   - Method: POST
@@ -338,7 +382,9 @@ The detailed information on API endpoints are given below:
     }
     ```
 
-- **Update Assessments Result:** Update assessment data by providing ID.
+### Update Assessments Result:
+
+- **Update assessment data by providing ID**
 
   - URL: `http://127.0.0.1:8000/api/assessment/assessments-result/{id}`
   - Method: PUT
@@ -378,7 +424,9 @@ The detailed information on API endpoints are given below:
     }
     ```
 
-- **Partial Update Assessment Result:** Update some parts of assessment data by providing ID.
+### Partial Update Assessment Result:
+
+- **Update some parts of assessment data by providing ID**
 
   - URL: `http://127.0.0.1:8000/api/assessment/assessments-result/{id}`
   - Method: PATCH
@@ -389,7 +437,9 @@ The detailed information on API endpoints are given below:
     }
     ```
 
-- **Delete Assessment Result:** Delete an assessment by providing ID.
+### Delete Assessment Result:
+
+- **Delete an assessment by providing ID**
 
   - URL: `http://127.0.0.1:8000/api/assessment/assessments-result/{id}`
   - Method: DELETE
@@ -410,7 +460,7 @@ Authenticate a user by providing their email and password. This endpoint generat
 - **URL:** `http://127.0.0.1:8000/api/login/`
 - **Method:** POST
 
-- Request
+### Request
   - **Body:**
     ```json
     {
@@ -418,10 +468,10 @@ Authenticate a user by providing their email and password. This endpoint generat
         "password": "123"
     }
     ```
-- Response
-  - Status Code: 200 OK
-  - Description: Returns JWT tokens for access and refresh.
-  - data:
+### Response
+  - **Status Code: 200 OK**
+  - **Description: Returns JWT tokens for access and refresh**
+  - **data:**
   ```json
   {
     "refresh": "eyJhbGciOiJIUzIkjfnwkjdnkwqjdoqjpwdpjoqCJqdGkiOiIzMzIzYjlmNjNhODg0ODY5YWExYmYyY2MwZjYzNzFhMiIsInVzZXJfaWQiOjE0fQ.VkAC-kDZjwkYf6p8V7C_TwruGxKgQkNx1uM2kNaWoZk",
@@ -430,4 +480,4 @@ Authenticate a user by providing their email and password. This endpoint generat
   ```
 ## Contribution
 
-Contributions, bug reports, and feature requests are welcome. Please follow the contribution guidelines.
+Contributions, bug reports, and feature requests are welcome.
