@@ -1,11 +1,8 @@
 import epicbox
 from .func_call_gen import generate_function_call
 
-epicbox.configure(
-    profiles=[
-        epicbox.Profile('python', 'python:3.11-alpine')
-    ]
-)
+epicbox.configure(profiles=[epicbox.Profile("python", "python:3.11-alpine")])
+
 
 def execute_testcases(code, testcases_input, testcase_output):
     """
@@ -21,25 +18,34 @@ def execute_testcases(code, testcases_input, testcase_output):
     -------
         dict: A dictionary containing the execution result.
     """
-    generated_call = generate_function_call(code, testcases_input)
-
-    if generated_call:
-        combined_code = code + generated_call
-        files = [{'name': 'main.py', 'content': combined_code}]
-        resource_limits = {'cputime': 1, 'memory': 128}
-        result = epicbox.run('python', 'python3 main.py', stdin=testcases_input, files=files, limits=resource_limits)
-        output = result['stdout'].decode('utf-8').strip()
-        duration = result['duration']
-        is_passed = output == testcase_output
-        testcase_result = {
-                "input": testcases_input,
-                "expected_output": testcase_output,
-                "actual_output": output,
-                "status": "Pass" if is_passed else "Fail",
-                "duration": duration
-            }
-        print(testcase_result)
-        return testcase_result
+    if generated_call := generate_function_call(code, testcases_input):
+        return _extracted_from_execute_testcases_(
+            code, generated_call, testcases_input, testcase_output
+        )
     else:
-        return {"error": "Mismatch in argument counts between user code and test case input."}
+        return {"error": "Mismatch Arguments or invalid syntax", "status": "Fail"}
 
+
+def _extracted_from_execute_testcases_(
+    code, generated_call, testcases_input, testcase_output
+):
+    combined_code = code + generated_call
+    files = [{"name": "main.py", "content": combined_code}]
+    resource_limits = {"cputime": 2, "memory": 256}
+    result = epicbox.run(
+        "python",
+        "python3 main.py",
+        stdin=testcases_input,
+        files=files,
+        limits=resource_limits,
+    )
+    output = result["stdout"].decode("utf-8").strip()
+    duration = result["duration"]
+    is_passed = output == testcase_output
+    return {
+        "input": testcases_input,
+        "expected_output": testcase_output,
+        "actual_output": output,
+        "status": "Pass" if is_passed else "Fail",
+        "duration": duration,
+    }

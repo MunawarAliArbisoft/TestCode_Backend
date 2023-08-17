@@ -14,8 +14,7 @@ def strip_arguments(arguments):
         list: List of arguments with whitespace stripped.
     """
 
-    stripped_args = [arg.strip() for arg in arguments]
-    return stripped_args
+    return [arg.strip() for arg in arguments]
 
 
 def generate_function_call(user_code, testcases_input):
@@ -31,10 +30,15 @@ def generate_function_call(user_code, testcases_input):
     -------
         bytes: Byte representation of the function caller code.
     """
-    parsed_code = ast.parse(user_code)
+    try:
+        parsed_code = ast.parse(user_code)
+    except SyntaxError:
+        return False
     function_name = parsed_code.body[0].name
     user_args = parsed_code.body[0].args.args
     testcases_args = strip_arguments(testcases_input.split(","))
+    
+
 
     if len(user_args) != len(testcases_args):
         return False
@@ -49,6 +53,4 @@ def generate_function_call(user_code, testcases_input):
         if i != len(testcases_args) - 1:
             args_str += ", "
 
-    caller_code = bytes(f"\r\nprint({function_name}({args_str}))", "utf-8")
-
-    return caller_code
+    return bytes(f"\r\nprint({function_name}({args_str}))", "utf-8")
