@@ -9,6 +9,8 @@ from question.models import Question
 from .serializers import AssessmentSerializer, AssessmentResultSerializer
 from .permissions import IsAdminOrReadOnly, IsAdminOrCandidate
 
+from .code_executor import execute_testcases
+
 
 class AssessmentViewSet(viewsets.ModelViewSet):
     queryset = Assessment.objects.all()
@@ -45,17 +47,30 @@ def submit_assessment(request):
                 total_score += 1  # Increment score for correct MCQ answer
 
         elif question_type == "COD":
-            pass
+            code = answer_data["code"]
+            testcases = question.testcases.all()
+
+            for testcase in testcases:
+                testcase_input = testcase.input_data
+                testcase_output = testcase.expected_output
+                result = execute_testcases(bytes(code, 'utf-8'), testcase_input, testcase_output)
+                # if all test cases passed then total score += 1
 
     # calculate the percentage score
     total_questions = assessment.questions.count()
     percentage_score = (total_score / total_questions) * 100
 
     # AssessmentResult instance with the calculated total_score
-    AssessmentResult.objects.create(
-        candidate=request.user,
-        assessment=assessment,
-        score=float(f"{percentage_score:.2f}"),
-    )
+    # AssessmentResult.objects.create(
+    #     candidate=request.user,
+    #     assessment=assessment,
+    #     score=float(f"{percentage_score:.2f}"),
+    # )
 
-    return Response(status=status.HTTP_201_CREATED)
+    # Return a response with additional data
+    response_data = {
+        "message": "Assessment submitted successfully.",
+        "percentage_score": percentage_score
+    }
+
+    return Response(response_data, status=status.HTTP_201_CREATED)
