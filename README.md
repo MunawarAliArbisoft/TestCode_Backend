@@ -1,10 +1,33 @@
 # TestCode Backend
 
-This repository contains the backend for the TestCode app, an application to manage the online assessment center management system using Django Rest Framework.
+The TestCode is an online assessment Center backend project aims to create a robust backend system for managing an online assessment center. Admins can effortlessly create assessments, candidates can register and attempt assessments, and automated code evaluation provides immediate feedback.
 
-## Endpoints
+## Key Features
 
-## 1. Candidate
+- Admins create and manage assessments with titles, descriptions, and question types.
+- Candidates register, attempt assessments, and receive automated feedback.
+- Various question types including MCQs and coding questions are supported.
+- Automated code evaluation ensures consistent and accurate results.
+- Admins oversee assessments, view reports, and manage users.
+- Secure authentication and API endpoints ensure data integrity.
+
+## Getting Started
+
+1. Clone the repository.
+2. Set up a virtual environment.
+3. Install dependencies from `requirements.txt`.
+4. Run migrations and start the development server.
+
+## Documentation
+
+The detailed information on API endpoints are given below:
+- [Candidate](#candidate)
+- [Questions](#questions)
+- [Assessment](#assessment)
+- [Assessments Result](#assessments-result)
+- [Login](#login)
+
+## Candidate
 
 - **List Candidates:** Get a list of all candidates.
 
@@ -72,7 +95,7 @@ This repository contains the backend for the TestCode app, an application to man
 - **Partial Update Candidate:** Owners and staff members can update partially.
 - **Delete Candidate:** Only staff users are allowed.
 
-## 2. Questions
+## Questions
 
 - **List Questions:** Get a list of all questions.
 
@@ -165,7 +188,7 @@ This repository contains the backend for the TestCode app, an application to man
 - **Partial Update Question:** Staff users are allowed.
 - **Delete Question:** Staff users are allowed.
 
-## 3. Assessments
+## Assessment
 
 - **List Assessments:** Get a list of all assessments.
 
@@ -248,7 +271,7 @@ This repository contains the backend for the TestCode app, an application to man
 - **Partial Update Assessment:** Staff users are allowed.
 - **Delete Assessment:** Staff users are allowed.
 
-## 4. Assessment Results
+## Assessments Result
 
 - **List Assessment Results:** Get a list of all assessment results.
 
@@ -262,71 +285,149 @@ This repository contains the backend for the TestCode app, an application to man
 
 - **Create Assessment Result:** Create a new assessment result.
 
-  - URL: `http://127.0.0.1:8000/api/assessment/assessments`
+  - URL: `http://127.0.0.1:8000/api/assessment/assessments-result`
   - Method: POST
   - Request Body:
     ```json
     {
-        "title": "Math Assignment",
-        "description": "A math assignment for KG",
-        "date_created": "2023-08-04",
-        "date_updated": "2023-08-04",
-        "questions": [
+    "score": 87.0,
+    "assessment": {
+        "id": 4
+    },
+    "candidate": {
+        "email": "abdullah@gmail.com"
+    },
+    "result": [
             {
-                "id": 1,
-                "assessment": 1,
-                "text": "What is 2+2?",
-                ... (other question fields)
+                "type": "MCQ",
+                "score": 1,
+                "question": "What is the datatype of 92.3?",
+                "correct_choice": "float",
+                "selected_choice": "float"
             },
-            ... (other questions)
+            {
+                "type": "COD",
+                "score": 1,
+                "question": "Write the function to greet with name?",
+                "testcase_results": [
+                    {
+                        "input": "Munawar",
+                        "status": "Pass",
+                        "duration": 0.063543,
+                        "actual_output": "Hello Munawar",
+                        "expected_output": "Hello Munawar"
+                    }
+                ]
+            },
+            {
+                "type": "COD",
+                "score": 0,
+                "question": "Write the function to sum 2 numbers?",
+                "testcase_results": [
+                    {
+                        "error": "Mismatch Arguments or invalid syntax",
+                        "status": "Fail"
+                    },
+                    {
+                        "error": "Mismatch Arguments or invalid syntax",
+                        "status": "Fail"
+                    }
+                ]
+            }
         ]
     }
     ```
 
-- **Update Assessment:** Update assessment data by providing ID.
+- **Update Assessments Result:** Update assessment data by providing ID.
 
-  - URL: `http://127.0.0.1:8000/api/assessment/assessments/{id}`
+  - URL: `http://127.0.0.1:8000/api/assessment/assessments-result/{id}`
   - Method: PUT
   - Request Body:
     ```json
     {
-        "title": "Math Assignment",
-        "description": "Updated description",
-        "date_created": "2023-08-04",
-        "date_updated": "2023-08-10",
-        "questions": [
+    "score": 87.0,
+    "assessment": {
+        "id": 4
+    },
+    "candidate": {
+        "email": "abdullah@gmail.com"
+    },
+    "result": [
             {
-                "id": 1,
-                "assessment": 1,
-                "text": "What is 2+2?",
-                ... (other question fields)
+                "type": "MCQ",
+                "score": 1,
+                "question": "What is the datatype of 92.3?",
+                "correct_choice": "float",
+                "selected_choice": "float"
             },
-            ... (other questions)
+            {
+                "type": "COD",
+                "score": 1,
+                "question": "Write the function to greet with name?",
+                "testcase_results": [
+                    {
+                        "input": "Munawar",
+                        "status": "Pass",
+                        "duration": 0.063543,
+                        "actual_output": "Hello Munawar",
+                        "expected_output": "Hello Munawar"
+                    }
+                ]
+            },
         ]
     }
     ```
 
-- **Partial Update Assessment:** Update some parts of assessment data by providing ID.
+- **Partial Update Assessment Result:** Update some parts of assessment data by providing ID.
 
-  - URL: `http://127.0.0.1:8000/api/assessment/assessments/{id}`
+  - URL: `http://127.0.0.1:8000/api/assessment/assessments-result/{id}`
   - Method: PATCH
   - Request Body:
     ```json
     {
-        "description": "Updated description"
+        "score": 90.0
     }
     ```
 
-- **Delete Assessment:** Delete an assessment by providing ID.
+- **Delete Assessment Result:** Delete an assessment by providing ID.
 
-  - URL: `http://127.0.0.1:8000/api/assessment/assessments/{id}`
+  - URL: `http://127.0.0.1:8000/api/assessment/assessments-result/{id}`
   - Method: DELETE
 
 ### Permissions
 
-- **List Assessments:** Authenticated user can access.
-- **Retrieve Assessment:** Authenticated user can access.
-- **Create Assessment:** Staff users are allowed.
-- **Update Assessment:** Staff users are allowed.
-- **Partial Update Assessment:** Staff users are allowed.
-- **Delete Assessment:** Staff users are allowed.
+- **List Assessments Result:** Staff users are allowed.
+- **Retrieve Assessment Result:** Staff and Owner are allowed
+- **Create Assessment Result:** Staff users are allowed.
+- **Update Assessment Result:** Staff users are allowed.
+- **Partial Update Assessment Result:** Staff users are allowed.
+- **Delete Assessment Result:** Staff users are allowed.
+
+## Login
+
+Authenticate a user by providing their email and password. This endpoint generates JWT tokens for authentication.
+
+- **URL:** `http://127.0.0.1:8000/api/login/`
+- **Method:** POST
+
+- Request
+  - **Body:**
+    ```json
+    {
+        "email": "abc@gmail.com",
+        "password": "123"
+    }
+    ```
+- Response
+  - Status Code: 200 OK
+  - Description: Returns JWT tokens for access and refresh.
+  - data:
+  ```json
+  {
+    "refresh": "eyJhbGciOiJIUzIkjfnwkjdnkwqjdoqjpwdpjoqCJqdGkiOiIzMzIzYjlmNjNhODg0ODY5YWExYmYyY2MwZjYzNzFhMiIsInVzZXJfaWQiOjE0fQ.VkAC-kDZjwkYf6p8V7C_TwruGxKgQkNx1uM2kNaWoZk",
+    "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkyMjk1MzQ5LCJpYXQiOkjwhdkbqkjdnoiWIaSI6IjkzYjQzYzFiMWEwZTQ3MjU5YTc0ZWIwNGEwOTRlYTUwIiwidXNlcl9pZCI6MTR9.4k58jbEcP-4ovZb_l1Ck7BNnCtEs7mSBf83i_mEcCCY"
+  }
+  ```
+## Contribution
+
+Contributions, bug reports, and feature requests are welcome. Please follow the contribution guidelines.
