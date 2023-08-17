@@ -86,7 +86,7 @@ The detailed information on API endpoints are given below:
   - URL: `http://127.0.0.1:8000/api/candidate/candidates/{id}`
   - Method: DELETE
 
-#### Permissions
+### Permissions
 
 - **List Candidates:** Only staff users are allowed.
 - **Create Candidate:** Any user can create.
