@@ -26,6 +26,7 @@ The detailed information on API endpoints are given below:
 - Assessment
 - Assessments Result
 - Login
+- Submit Assessment
 
 ### Candidate
 
@@ -478,6 +479,54 @@ Authenticate a user by providing their email and password. This endpoint generat
     "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkyMjk1MzQ5LCJpYXQiOkjwhdkbqkjdnoiWIaSI6IjkzYjQzYzFiMWEwZTQ3MjU5YTc0ZWIwNGEwOTRlYTUwIiwidXNlcl9pZCI6MTR9.4k58jbEcP-4ovZb_l1Ck7BNnCtEs7mSBf83i_mEcCCY"
   }
   ```
+
+### Submit Assessment
+
+Authenticated candidates can submit thier assessments with their answers
+- **URL:** `http://127.0.0.1:8000/api/assessment/submit-assessment/`
+- **Method:** POST
+
+#### Request
+  - **Body:**
+    ```json
+    {
+    "assessment_id": 1,
+    "answers": [
+        {
+            "question_id": 1,
+            "question_type": "MCQ",
+            "selected_choice_id": 2
+        },
+        {
+            "question_id": 2,
+            "question_type": "COD",
+            "code": "print('Hello, world!')"
+        },
+        // More answers...
+    ]
+    }
+    ```
+#### Response
+  - **Status Code: 201 Created**
+  - **Description: Returns Result of Assessment**
+  - **data:**
+  ```json
+  {
+    "message": "Assessment submitted successfully.",
+    "percentage_score": 33.33,
+    "assessment": "Demo Assignment",
+    "assessment_results": [
+        {
+            "question": "Demo Question 2",
+            "type": "MCQ",
+            "selected_choice": "true",
+            "correct_choice": "true",
+            "score": 1
+        }
+    ]
+  }
+  ```
+
 ## Contribution
 
 Contributions, bug reports, and feature requests are welcome.
