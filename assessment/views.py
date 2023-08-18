@@ -3,9 +3,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
+from django.db import IntegrityError
 
 from .models import Assessment, AssessmentResult
-from question.models import Question
 from .serializers import AssessmentSerializer, AssessmentResultSerializer
 from .permissions import IsAdminOrReadOnly, IsAdminOrCandidate
 
@@ -39,11 +39,14 @@ def submit_assessment(request):
     response_data = assessment_response(percentage_score, assessment, assessment_results)
     
     # AssessmentResult instance with the calculated total_score
-    AssessmentResult.objects.create(
-        candidate=request.user,
-        assessment=assessment,
-        score=float(f"{percentage_score:.2f}"),
-        result = assessment_results,
-    )
+    try:
+        AssessmentResult.objects.create(
+            candidate=request.user,
+            assessment=assessment,
+            score=float(f"{percentage_score:.2f}"),
+            result = assessment_results,
+        )
+    except IntegrityError as e:
+        return Response({"message": f"This Assessment Already Attempted by {request.user}","error":str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
     return Response(response_data, status=status.HTTP_201_CREATED)
