@@ -250,7 +250,7 @@ The Candidate section provides endpoints related to candidate management.
   - URL: `http://127.0.0.1:8000/api/assessment/assessments/{id}`
   - Method: GET
   - Response Body:
-  ```
+  ```json
     {
       "id": 10,
       "title": "Test Assessment",
@@ -420,7 +420,7 @@ The Save Answer section provides endpoints related to answer management.
   - URL: `http://127.0.0.1:8000/api/assessment/save-answer/{id}/`
   - Method: GET
   - Response Body:
-  ```
+  ```json
   [
       {
           "id": 4,
@@ -574,7 +574,7 @@ The Save Answer section provides endpoints related to answer management.
   - URL: `http://127.0.0.1:8000/api/assessment/assessments-result`
   - Method: GET
   - Response Body:
-  ```
+  ```json
     [
         {
             "id": 70,
