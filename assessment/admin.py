@@ -5,7 +5,7 @@ from django.contrib import admin
 from django.db.models import JSONField
 from django.forms import widgets
 
-from .models import Assessment, AssessmentResult
+from .models import Assessment, AssessmentResult, Answer
 
 
 logger = logging.getLogger(__name__)
@@ -28,7 +28,13 @@ class PrettyJSONWidget(widgets.Textarea):
 class JsonAdmin(admin.ModelAdmin):
     formfield_overrides = {JSONField: {"widget": PrettyJSONWidget}}
 
+class AssessmentAdmin(admin.ModelAdmin):
+    list_display = ["title", "description", 'date_created']
+
+class AnswerAdmin(admin.ModelAdmin):
+    list_display = ["candidate_id", "assessment_id", "question_id", "question_type"]
 
 # Register your models here.
-admin.site.register(Assessment)
+admin.site.register(Assessment, AssessmentAdmin)
 admin.site.register(AssessmentResult, JsonAdmin)
+admin.site.register(Answer, AnswerAdmin)

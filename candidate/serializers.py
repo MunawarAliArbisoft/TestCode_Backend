@@ -19,7 +19,6 @@ class CandidateSerializer(serializers.ModelSerializer):
         return candidate
 
     def update(self, instance, validated_data):
-        password = validated_data.pop("password", None)
-        if password:
+        if password := validated_data.pop("password", None):
             instance.set_password(password)  # Hash the password
         return super().update(instance, validated_data)
