@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from django.shortcuts import get_object_or_404
 from .models import *
-from candidate.serializers import CandidateSerializer
 from question.serializers import QuestionSerializer
 
 
@@ -21,12 +20,14 @@ class AssessmentSerializer(serializers.ModelSerializer):
 
 
 class AssessmentResultSerializer(serializers.ModelSerializer):
-    assessment = AssessmentSerializer()
-    candidate = CandidateSerializer()
+    assessment_id = serializers.ReadOnlyField(source='assessment.id')
+    assessment_title = serializers.ReadOnlyField(source='assessment.title')
+    candidate_id = serializers.ReadOnlyField(source='candidate.id')
+    candidate_email = serializers.ReadOnlyField(source='candidate.email')
 
     class Meta:
         model = AssessmentResult
-        fields = ["id", "score", "submission_date", "assessment", "candidate", "result"]
+        fields = ["id", "score", "submission_date", "assessment_id", "assessment_title", "candidate_id", "candidate_email", "result"]
 
     def to_internal_value(self, data):
         # Extract candidate email and assessment ID from the incoming data

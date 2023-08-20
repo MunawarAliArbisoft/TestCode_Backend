@@ -15,13 +15,10 @@ class IsAdminOrCandidate(permissions.BasePermission):
     def has_permission(self, request, view):
         if view.action == "retrieve":
             return request.user.is_authenticated
-        # Allow only admin users to perform POST, PUT, and DELETE requests
-        return request.user.is_staff
+        return request.method in permissions.SAFE_METHODS
 
     def has_object_permission(self, request, view, obj):
         # Allow candidates to read their own assessment results
         if view.action == "retrieve":
             return obj.candidate == request.user or request.user.is_staff
-
-        # Allow only admin users to perform POST, PUT, and DELETE requests
-        return request.user.is_staff
+        return request.method in permissions.SAFE_METHODS

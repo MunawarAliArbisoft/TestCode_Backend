@@ -15,14 +15,9 @@ class CandidatePermission(permissions.BasePermission):
             return False
 
     def has_object_permission(self, request, view, obj):
-        # Deny actions on objects if the user is not authenticated
-        # if not request.user.is_authenticated:
-        #     return False
         if view.action in ["update", "partial_update", "retrieve"]:
-            
             return obj == request.user or request.user.is_staff
         elif view.action == "destroy":
-            print("hello delete")
             return request.user.is_staff
         else:
             return False

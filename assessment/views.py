@@ -25,6 +25,7 @@ class AssessmentViewSet(viewsets.ModelViewSet):
 class AssessmentResultViewSet(viewsets.ModelViewSet):
     queryset = AssessmentResult.objects.all()
     serializer_class = AssessmentResultSerializer
+    http_method_names = ['get', 'retrieve']
     permission_classes = [IsAuthenticated, IsAdminOrCandidate]
 
 
