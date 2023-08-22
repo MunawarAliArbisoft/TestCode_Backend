@@ -17,5 +17,5 @@ def api_root(request, format=None):
 
 urlpatterns = [
     #  Custom root view
-    path("", api_root),
+    path("", api_root, name="Root"),
 ]
