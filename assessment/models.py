@@ -7,7 +7,7 @@ from question.models import Question
 class Assessment(models.Model):
     title = models.CharField(max_length=100, unique=True)
     description = models.TextField()
-    questions = models.ManyToManyField(Question, related_name="assessments")
+    questions = models.ManyToManyField(Question, related_name="assessments", blank=True)
     date_created = models.DateField(auto_now_add=True)
     date_updated = models.DateField(auto_now=True)
 

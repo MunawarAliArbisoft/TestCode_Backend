@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "corsheaders",
     "rest_framework",
     "drf_yasg",
     "rest_framework_simplejwt",
@@ -45,6 +46,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "project.urls"
@@ -144,4 +146,11 @@ SIMPLE_JWT = {
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-ALLOWED_HOSTS = ['code-test-app-772f142e4600.herokuapp.com']
+
+ALLOWED_HOSTS = ["127.0.0.1", "code-test-app-772f142e4600.herokuapp.com"]
+
+CORS_ALLOW_ORIGINS = [
+    "https://code-test-app-772f142e4600.herokuapp.com",
+    "http://127.0.0.1:8000", 
+]
+
