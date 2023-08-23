@@ -25,6 +25,10 @@ CORS_ALLOW_ORIGINS = [
     "http://127.0.0.1:8000", 
 ]
 
+CSRF_COOKIE_SAMESITE = 'None'  # For cross-origin cookies
+SESSION_COOKIE_SAMESITE = 'None'  # If you're using sessions
+
+
 # Application definition
 
 INSTALLED_APPS = [
