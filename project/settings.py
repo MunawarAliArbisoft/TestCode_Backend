@@ -3,6 +3,8 @@ from pathlib import Path
 from datetime import timedelta
 import os
 from datetime import timedelta
+from corsheaders.defaults import default_headers
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -16,8 +18,12 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1", "code-test-app-772f142e4600.herokuapp.com"]
 
+CORS_ALLOW_ORIGINS = [
+    "https://code-test-app-772f142e4600.herokuapp.com",
+    "http://127.0.0.1:8000", 
+]
 
 # Application definition
 
@@ -145,12 +151,3 @@ SIMPLE_JWT = {
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-
-ALLOWED_HOSTS = ["127.0.0.1", "code-test-app-772f142e4600.herokuapp.com"]
-
-CORS_ALLOW_ORIGINS = [
-    "https://code-test-app-772f142e4600.herokuapp.com",
-    "http://127.0.0.1:8000", 
-]
-
